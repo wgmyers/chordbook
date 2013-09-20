@@ -24,9 +24,15 @@ class html(CbkOutputter):
 </html>
 """
 
+    def strip_spaces(self, s):
+        """Take a string and strip spaces from it"""
+        s = s.replace(" ", "")
+        return s
+
     def make_tune(self, t):
         """Format an individual tune"""
-        s = "<a name=\"\"></a><h3>" + t.name + "</h3>\n"
+        anchor = self.strip_spaces(t.name)
+        s = "<a name=\"" + anchor + "\"></a><h3>" + t.name + "</h3>\n"
 
         seen = {}
         for section in t.structure:
@@ -36,7 +42,7 @@ class html(CbkOutputter):
                 s += "<h4>" + section.title() + "</h4>\n"
                 chunks = self.chunk_section(t.__getattribute__(section))
                 for c in chunks:
-                    s += "<p style=\"chords\">" + c + "</p>\n"
+                    s += "<p class=\"chords\">" + c + "</p>\n"
                 seen[section.title()] = True
 
         return s
@@ -48,7 +54,8 @@ class html(CbkOutputter):
         s = "<h2>Contents</h2>\n<ol>"
 
         for title in c:
-            s += "<li><a href=\"\">" + title + "</a></li>\n"
+            anchor = self.strip_spaces(title)
+            s += "<li><a href=\"#" + anchor + "\">" + title + "</a></li>\n"
 
         s += "</ol>\n"
 
