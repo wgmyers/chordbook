@@ -47,6 +47,6 @@ b = libcbk.load_json(f)
 f.close()
 
 # produce output
-o.makebook(b)
+o.make_book(b)
 
 # done

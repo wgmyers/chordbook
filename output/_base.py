@@ -9,6 +9,6 @@ class CbkOutputter(object):
     def __init__(self):
         pass
 
-    def makebook(self, b):
+    def make_book(self, b):
 
         print repr(b);

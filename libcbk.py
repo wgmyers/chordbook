@@ -19,6 +19,15 @@ class Book(object):
     def __repr__(self):
         return "%s(%r)" % (self.__class__, self.__dict__)
 
+    def get_contents(self):
+        """Return an array of the names of the tunes"""
+
+        c = []
+        for t in self.tunes:
+            c.append(t.name)
+        c.sort()
+
+        return c
 
 def load_json(infile):
     json_data = json.load(infile)

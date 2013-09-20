@@ -6,6 +6,6 @@ from _base import CbkOutputter
 
 class html(CbkOutputter):
 
-    def makebook(self, b):
+    def make_book(self, b):
         print "HTML class"
-        super(html, self).makebook(b)
+        super(html, self).make_book(b)
