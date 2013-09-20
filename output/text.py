@@ -6,22 +6,11 @@ from _base import CbkOutputter
 
 class text(CbkOutputter):
 
-    def chunk_section(self, s):
-        """Take a section and return an array of 4 bar chunks"""
-        chords = s.split("|")
-
-        chunks = []
-        sep = "|"
-        for i in range(0, len(chords), 4):
-            chunks.append(sep.join(chords[i:i+4]).strip())
-
-        return chunks
-
     def make_underline(self, s, char):
         """Take a string and underline char, return underlined version"""
         s = s + "\n" +(char * len(s)) + "\n\n"
         return s
-
+    
     def make_tune(self, t):
         """Format an individual tune"""
         s = t.name
