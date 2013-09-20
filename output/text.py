@@ -16,9 +16,14 @@ class text(CbkOutputter):
         s = t.name
         s = self.make_underline(s, "-")
 
+        seen = {}
         for section in t.structure:
-            s += section.title() + ":\n"
-            s += t.__getattribute__(section) + "\n\n"
+            if section.title() in seen:
+                s += section.title() + "\n\n"
+            else:
+                s += section.title() + ":\n"
+                s += t.__getattribute__(section) + "\n\n"
+                seen[section.title()] = True
 
         s += "\n"
 
