@@ -8,7 +8,7 @@ import sys
 import os.path
 import optparse
 
-import chordbook.libcbk as libcbk
+from chordbook import libcbk
 from chordbook._version import __version__
 
 # parse commandline
