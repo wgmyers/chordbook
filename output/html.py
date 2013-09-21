@@ -14,7 +14,58 @@ class html(CbkOutputter):
 <head>
 <meta charset="utf-8" />
 <title>{{TITLE}}</title>
-<link rel="stylesheet" href="{{CSS_LOC}}" type="text/css" />
+<!-- <link rel="stylesheet" href="{{CSS_LOC}}" type="text/css" /> -->
+<style type="text/css">
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #faf0e6;
+    // color: #ffd700;
+    margin: 0% 20%;
+}
+
+h1, h2, h3, h5, p {
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+}
+
+h4 {
+    padding: 0% 10%;
+    margin: 0%;
+    background-color: #b0e0e6;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.titlepage {
+
+    background-color: #ffefd5;
+    height: 100%;
+    border: thin solid #000;
+
+}
+
+.tune {
+    
+    background-color: #ffefd5;
+    height: 100%;
+    margin: 5% 0%;
+    border: thin solid #000;
+
+}
+
+.chords {
+
+    text-align: center;
+    font-size: 32pt;
+    background-color: #e6e6fa;
+}
+
+</style>
 </head>
 <body>
 """
@@ -31,8 +82,9 @@ class html(CbkOutputter):
 
     def make_tune(self, t):
         """Format an individual tune"""
+        s = "<div class=\"tune\">\n"
         anchor = self.strip_spaces(t.name)
-        s = "<a name=\"" + anchor + "\"></a><h3>" + t.name + "</h3>\n"
+        s += "<a name=\"" + anchor + "\"></a><h3>" + t.name + "</h3>\n"
 
         seen = {}
         for section in t.structure:
@@ -44,6 +96,8 @@ class html(CbkOutputter):
                 for c in chunks:
                     s += "<p class=\"chords\">" + c + "</p>\n"
                 seen[section.title()] = True
+
+        s +="</div>\n"
 
         return s
 
@@ -59,11 +113,14 @@ class html(CbkOutputter):
 
         s += "</ol>\n"
 
+        s += "</div>\n"
+
         return s
 
     def make_header(self, b):
         """Make the header part of the HTML output"""
-        s = "<h1>" + b.band + "</h1>\n"
+        s = "<div class=\"titlepage\">\n"
+        s += "<h1>" + b.band + "</h1>\n"
         s += "<p><i>Version " + b.version + "</i></p>\n"
 
         return s
