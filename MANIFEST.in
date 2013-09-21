@@ -1,0 +1,4 @@
+include *.md
+include TODO
+include COPYING
+include test.cbk
