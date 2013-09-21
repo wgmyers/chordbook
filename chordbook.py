@@ -8,10 +8,8 @@ import sys
 import os.path
 import optparse
 
-import libcbk
-from _version import __version__
-
-
+import chordbook.libcbk as libcbk
+from chordbook._version import __version__
 
 # parse commandline
 p = optparse.OptionParser()
@@ -22,7 +20,7 @@ p.add_option("-o", "--output", action="store", type="choice", dest="output",
 p.add_option("-v", "--version", action="store_true", dest="version")
 
 p.set_defaults( output="html",
-                infile="test.cbk")
+                infile="chordbook/examples/test.cbk")
 
 opt, args = p.parse_args()
 

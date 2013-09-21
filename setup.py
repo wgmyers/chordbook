@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 import re
-VERSIONFILE="./_version.py"
+VERSIONFILE="./chordbook/_version.py"
 verstrline = open(VERSIONFILE, "rt").read()
 VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
 mo = re.search(VSRE, verstrline, re.M)
@@ -18,8 +18,7 @@ setup(  name="ChordBook",
         author="Wayne Myers",
         author_email="wgmyers@gmail.com",
         description="A tool to manage books of chords for bands.",
-        py_modules=['libcbk'],
-        packages=['output'],
+        packages=['chordbook'],
         scripts=['chordbook.py'],
         url="https://github.com/wgmyers/chordbook",
         )

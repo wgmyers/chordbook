@@ -1,0 +1,33 @@
+Unpacking ./ChordBook-0.0.1.tar.gz
+  Running setup.py egg_info for package from file:///home/wayne/src/python/chordbook/dist/ChordBook-0.0.1.tar.gz
+    Traceback (most recent call last):
+      File "<string>", line 13, in <module>
+      File "/tmp/pip-upJQTt-build/setup.py", line 7, in <module>
+        verstrline = open(VERSIONFILE, "rt").read()
+    IOError: [Errno 2] No such file or directory: './_version.py'
+    Complete output from command python setup.py egg_info:
+    Traceback (most recent call last):
+
+  File "<string>", line 13, in <module>
+
+  File "/tmp/pip-upJQTt-build/setup.py", line 7, in <module>
+
+    verstrline = open(VERSIONFILE, "rt").read()
+
+IOError: [Errno 2] No such file or directory: './_version.py'
+
+----------------------------------------
+Command python setup.py egg_info failed with error code 1
+Exception information:
+Traceback (most recent call last):
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 252, in main
+    self.run(options, args)
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 408, in run
+    requirement_set.install_files(finder, force_root_egg_info=self.bundle)
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 1775, in install_files
+    req_to_install.run_egg_info()
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 1346, in run_egg_info
+    command_desc='python setup.py egg_info')
+  File "/usr/lib/python2.6/dist-packages/pip.py", line 3543, in call_subprocess
+    % (command_desc, proc.returncode))
+InstallationError: Command python setup.py egg_info failed with error code 1

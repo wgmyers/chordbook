@@ -1,0 +1,13 @@
+COPYING
+README
+README.md
+TODO
+_version.py
+chordbook.py
+libcbk.py
+setup.py
+test.cbk
+output/__init__.py
+output/_base.py
+output/html.py
+output/text.py
