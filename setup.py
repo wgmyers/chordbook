@@ -13,12 +13,12 @@ else:
     raise RuntimeError("Unable to find version string in %s." % VERSIONFILE) 
 
 
-setup(  name="chordbook",
+setup(  name="ChordBook",
         version=verstr,
         author="Wayne Myers",
         author_email="wgmyers@gmail.com",
         description="A tool to manage books of chords for bands.",
-        py_modules=['libcb'],
+        py_modules=['libcbk'],
         packages=['output'],
         scripts=['chordbook.py'],
         )
