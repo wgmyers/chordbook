@@ -1,4 +1,4 @@
 include *.md
 include TODO
 include COPYING
-include test.cbk
+include chordbook/examples/test.cbk

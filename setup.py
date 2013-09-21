@@ -18,7 +18,7 @@ setup(  name="ChordBook",
         author="Wayne Myers",
         author_email="wgmyers@gmail.com",
         description="A tool to manage books of chords for bands.",
-        packages=['chordbook'],
+        packages=['chordbook', 'chordbook/output', 'chordbook/examples'],
         scripts=['chordbook.py'],
         url="https://github.com/wgmyers/chordbook",
         )
