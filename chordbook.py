@@ -31,7 +31,7 @@ if opt.version:
 
 # output module importing
 output_type = opt.output
-output_module_name = "output." + output_type
+output_module_name = "chordbook.output." + output_type
 output_module = __import__(output_module_name, fromlist=[output_type])
 output_class = getattr(output_module, output_type)
 o = output_class()
