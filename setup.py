@@ -5,7 +5,7 @@ from distutils.core import setup
 import re
 VERSIONFILE="./_version.py"
 verstrline = open(VERSIONFILE, "rt").read()
-VSRE = r"^__version__ = ['\"][^'\"*]['\"]"
+VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
 mo = re.search(VSRE, verstrline, re.M)
 if mo:
     verstr = mo.group(1)
@@ -21,4 +21,5 @@ setup(  name="ChordBook",
         py_modules=['libcbk'],
         packages=['output'],
         scripts=['chordbook.py'],
+        url="https://github.com/wgmyers/chordbook",
         )
