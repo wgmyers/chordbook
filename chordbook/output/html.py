@@ -46,7 +46,7 @@ p {
     background-color: #ffefd5;
     height: 100%;
     border: thin solid #000;
-
+    margin-top: 10px;
 }
 
 .tune {
@@ -65,12 +65,17 @@ p {
     background-color: #e6e6fa;
 }
 
+.spacer {
+    height: 800px;
+}
+
 </style>
 </head>
 <body>
 """
 
     html_foot = """
+<p class="spacer">&nbsp;</p>
 </body>
 </html>
 """
@@ -97,7 +102,7 @@ p {
                     s += "<p class=\"chords\">" + c + "</p>\n"
                 seen[section.title()] = True
 
-        s +="</div>\n"
+        s +="</div>\n<p class=\"spacer\">&nbsp;</p>\n"
 
         return s
 
@@ -113,7 +118,7 @@ p {
 
         s += "</ol>\n"
 
-        s += "</div>\n"
+        s += "</div>\n<p class=\"spacer\">&nbsp;</p>\n"
 
         return s
 
