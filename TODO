@@ -3,6 +3,28 @@ Chordbook
 
 An application to manage books of chords for bands.
 
+TODO next:
+----------
+
+* Create output files directly so we don't have to use '>' to create output
+* Option to create multipage HTML files
+* Externalise HTML template
+* Externalise CSS for HTML
+* Make HTML space bars evenly no matter what is in them
+
+
+Implemented:
+------------
+
+* Basic commandline functionality
+* Reads and parses a JSON input file containing a book of songs with chords
+* Plaintext output mode
+* HTML output mode
+
+
+Initial plan:
+-------------
+
 Phase 1
 -------
 

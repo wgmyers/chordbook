@@ -50,7 +50,8 @@ p {
 }
 
 .tune {
-    
+   
+    page-break-before: always;
     background-color: #ffefd5;
     height: 100%;
     margin: 5% 0%;
@@ -66,7 +67,11 @@ p {
 }
 
 .spacer {
-    height: 800px;
+    height: 600px;
+}
+
+@media print {
+    .spacer { display: none; }
 }
 
 </style>
