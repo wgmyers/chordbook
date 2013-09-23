@@ -8,7 +8,7 @@ Input
 
 Data is stored in JSON format.
 
-There are two 'objects' - these becoke 'Book' and 'Tune' objects internally
+There are two 'objects' - these become 'Book' and 'Tune' objects internally
 as follows.
 
 Book contains:
@@ -27,7 +27,9 @@ Tune contains:
 
 Chord elements are structured as follows:
 
-A series of chord names seperated by the string " | "
+* A series of chord names separated by the string " | "
+* Chord names are currently free-form; there is as yet no transposition functionality
+* Eg "Ebmaj7 | Bb7 | Gmb5 | Fm"
 
 For now you need to enter your JSON directly.
 
@@ -57,8 +59,10 @@ Issues
 * Text output is completely useless.
 * HTML output does not make bars equal widths.
 * HTML output is hideous.
-* Sorting not yet properly handled.
+* Sorting not yet properly handled. Should be optional.
 * No option to produce multi-page HTML output.
+* Tune has no notion of key.
+* Time sig and composer not yet used.
 * Other bugs I have not yet spotted (many, no doubt).
 
 
