@@ -3,6 +3,63 @@ ChordBook
 
 A tool to manage books of chords for bands.
 
-Version 0.0.1
--------------
-Very early stage of development. Not usable yet.
+Input
+-----
+
+Data is stored in JSON format.
+
+There are two 'objects' - these becoke 'Book' and 'Tune' objects internally
+as follows.
+
+Book contains:
+
+* band - a string containing the band name
+* version - a string containing a version string for the book
+* tunes - an array of Tunes
+
+Tune contains:
+
+* name - the name of the tune
+* composer - the name of the composer. Not yet used.
+* time - the time signature of the tune. Not yet used
+* structure - an array of chord elements indicating the structure of the tune
+* chord elements - arbitrarily named, containing chord elements
+
+Chord elements are structured as follows:
+
+A series of chord names seperated by the string " | "
+
+For now you need to enter your JSON directly.
+
+See examples/test.cbk for an example.
+
+Something like http://www.jsoneditoronline.org/ may help.
+
+Output
+------
+
+Output is designed to be pluggable, so users can easily create their
+own output formats at will. For now there are only two, 'text', and
+'html', which produce text and html output respectively.
+
+Output currently goes directly to stdout rather than files.
+
+Roadmap
+-------
+
+See TODO.
+
+Issues
+------
+
+* setup.py does not work properly. Have not yet figured out why.
+* Entering JSON by hand is no fun.
+* Text output is completely useless.
+* HTML output does not make bars equal widths.
+* HTML output is hideous.
+* Sorting not yet properly handled.
+* No option to produce multi-page HTML output.
+* Other bugs I have not yet spotted (many, no doubt).
+
+
+
