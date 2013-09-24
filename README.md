@@ -30,10 +30,12 @@ Tune contains:
 Chord elements are structured as follows:
 
 * A series of chord names separated by the string " | "
-* Chord names are currently free-form; there is as yet no transposition functionality
+* Chord names are currently free-form
 * Eg "Ebmaj7 | Bb7 | Gmb5 | Fm"
 
 For now you need to enter your JSON directly.
+
+Transposition exists but may be buggy.
 
 See examples/test.cbk for an example.
 
