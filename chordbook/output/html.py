@@ -41,6 +41,10 @@ p {
     padding: 0px;
 }
 
+table, tr, td {
+    text-align: center;
+}
+
 .titlepage {
 
     background-color: #ffefd5;
@@ -102,10 +106,16 @@ p {
                 s += "<h5>" + section.title() + "</h5>\n"
             else:
                 s += "<h4>" + section.title() + "</h4>\n"
-                chunks = self.chunk_section(t.__getattribute__(section))
-                for c in chunks:
-                    s += "<p class=\"chords\">" + c + "</p>\n"
+                s += "<table width=\"100%\" border=\"1\">\n"
+                chunks = t.chunk_section(t.__getattribute__(section))
+                for chunk in chunks:
+                    s += "<tr>"
+                    chords = t.process_section(chunk)
+                    for c in chords:
+                        s += "<td width=\"25%\"><p class=\"chords\">" + c + "</p></td>"
+                    s += "</tr>\n"
                 seen[section.title()] = True
+                s += "</table>\n"
 
         s +="</div>\n<p class=\"spacer\">&nbsp;</p>\n"
 
