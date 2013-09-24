@@ -14,27 +14,9 @@ class Tune(object):
     def do_transpose(self, c):
         """Take a chord and transpose it according to transpose element if present"""
 
-        keys = [
-                ["A", "B", "C#", "D", "E", "F#", "G#"],
-                ["Bb", "C", "D", "Eb", "F", "G", "A"],
-                ["B", "C#", "D#", "E", "F#", "Ab", "A#"],  # non-standard, readable
-                ["C", "D", "E", "F", "G", "A", "B"],
-                ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
-                ["D", "E", "F#", "G", "A", "B", "C#"],
-                ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
-                ["E", "F#", "G#", "A", "B", "C#", "D#"],
-                ["F", "G", "A", "Bb", "C", "D", "E"],
-                ["F#", "Ab", "Bb", "B", "Db", "Eb", "F"],  # ditto
-                ["G", "A", "B", "C", "D", "E", "F#"],
-                ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
-                ]
-
-        majors = []
-        minors = []
-        for k in keys:
-            majors.append(k[0])
-            minors.append(k[5])
-
+        majors = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"]
+        minors = ["F#", "G", "Ab", "A", "Bb", "B", "C", "C#", "D", "Eb", "E", "F"]
+        
         # Split c into chord and suffix if present
         # Look mum, no regexes :)
         minor = False
