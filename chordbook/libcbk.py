@@ -11,11 +11,58 @@ class Tune(object):
     def __repr__(self):
         return "%s(%r)" % (self.__class__, self.__dict__)
 
-    def transpose(self, c):
+    def do_transpose(self, c):
         """Take a chord and transpose it according to transpose element if present"""
 
-        # Not yet implemented. Return input
-        return c
+        keys = [
+                ["A", "B", "C#", "D", "E", "F#", "G#"],
+                ["Bb", "C", "D", "Eb", "F", "G", "A"],
+                ["B", "C#", "D#", "E", "F#", "Ab", "A#"],  # non-standard, readable
+                ["C", "D", "E", "F", "G", "A", "B"],
+                ["Db", "Eb", "F", "Gb", "Ab", "Bb", "C"],
+                ["D", "E", "F#", "G", "A", "B", "C#"],
+                ["Eb", "F", "G", "Ab", "Bb", "C", "D"],
+                ["E", "F#", "G#", "A", "B", "C#", "D#"],
+                ["F", "G", "A", "Bb", "C", "D", "E"],
+                ["F#", "Ab", "Bb", "B", "Db", "Eb", "F"],  # ditto
+                ["G", "A", "B", "C", "D", "E", "F#"],
+                ["Ab", "Bb", "C", "Db", "Eb", "F", "G"],
+                ]
+
+        majors = []
+        minors = []
+        for k in keys:
+            majors.append(k[0])
+            minors.append(k[5])
+
+        # Split c into chord and suffix if present
+        # Look mum, no regexes :)
+        minor = False
+        c = c + "    " # guarantee we have enough chars for below to work
+        index = 1
+        if c[index] == "#" or c[index] == "b":
+            index += 1
+        if c[index] == "m" and c[index:index+3] != "maj7":
+            #index += 1
+            minor = True
+        chord = c[:index]
+        suffix = c[index:].strip() # lose spurious w/s we just added
+            
+        # Move c that distance
+        ki = majors
+        if minor == True:
+            ki = minors
+
+        ikey = ki.index(self.key)
+        tkey = ki.index(self.transpose)
+        ckey = ki.index(chord)
+
+        chord = ki[(ckey + tkey - ikey) % 12]
+
+        newchord = chord + suffix
+
+        # Return new key
+        return newchord
 
     def process_section(self, s):
         """Take a section and return an array of chords"""
@@ -23,7 +70,7 @@ class Tune(object):
         outchords = []
 
         for c in inchords:
-            outchords.append(self.transpose(c.strip()))
+            outchords.append(self.do_transpose(c.strip()))
 
         return outchords
 
