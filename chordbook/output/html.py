@@ -20,12 +20,16 @@ class html(CbkOutputter):
 body {
     font-family: Helvetica, Arial, sans-serif;
     background-color: #faf0e6;
-    // color: #ffd700;
     margin: 0% 20%;
 }
 
-h1, h2, h3, h5, p {
+h1, h2, h5, p {
     text-align: center;
+    padding: 0%;
+    margin: 0%;
+}
+
+h3 {
     padding: 0%;
     margin: 0%;
 }
@@ -41,8 +45,20 @@ p {
     padding: 0px;
 }
 
-table, tr, td {
-    text-align: center;
+table {
+    width: 100%;
+}
+
+td {
+    width: 25%;
+}
+
+td.bar {
+    border-right: 1px solid black;
+}
+
+td.directive {
+    text-align: right;
 }
 
 .titlepage {
@@ -64,10 +80,8 @@ table, tr, td {
 }
 
 .chords {
-
     text-align: center;
     font-size: 32pt;
-    background-color: #e6e6fa;
 }
 
 .spacer {
@@ -98,7 +112,11 @@ table, tr, td {
         """Format an individual tune"""
         s = "<div class=\"tune\">\n"
         anchor = self.strip_spaces(t.name)
-        s += "<a name=\"" + anchor + "\"></a><h3>" + t.name + "</h3>\n"
+        s += "<table><tr>"
+        s += "<td><a name=\"" + anchor + "\"></a><h3>" + t.name + \
+                "</h3></td><td class=\"directive\"><i>" + t.time + "</i></td>\n"
+        s += "</tr></table>"
+        
 
         seen = {}
         for section in t.structure:
@@ -106,14 +124,20 @@ table, tr, td {
                 s += "<h5>" + section.title() + "</h5>\n"
             else:
                 s += "<h4>" + section.title() + "</h4>\n"
-                s += "<table width=\"100%\" border=\"1\">\n"
+                s += "<table>\n"
                 chunks = t.chunk_section(t.__getattribute__(section))
                 for chunk in chunks:
                     s += "<tr>"
                     chords = t.process_section(chunk)
+                    i = 0
                     for c in chords:
-                        s += "<td width=\"25%\"><p class=\"chords\">" + c + "</p></td>"
-                    s += "</tr>\n"
+                        if (i < len(chords) - 1):
+                            s += "<td class=\"bar\">"
+                        else:
+                            s+= "<td>"
+                        s += "<p class=\"chords\">" + c + "</p></td>"
+                        i += 1
+                    s += "</tr>"
                 seen[section.title()] = True
                 s += "</table>\n"
 
