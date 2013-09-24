@@ -21,7 +21,7 @@ Tune contains:
 
 * name - the name of the tune
 * composer - the name of the composer. Not yet used.
-* time - the time signature of the tune. Not yet used
+* time - the time signature of the tune. 
 * structure - an array of chord elements indicating the structure of the tune
 * chord elements - arbitrarily named, containing chord elements
 
