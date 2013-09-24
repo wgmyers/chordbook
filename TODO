@@ -7,11 +7,11 @@ TODO next:
 ----------
 
 * Create output files directly so we don't have to use '>' to create output
-* Option to create multipage HTML files
+* Option to create multipage HTML files (why?)
 * Externalise HTML template
 * Externalise CSS for HTML
-* Make HTML space bars evenly no matter what is in them
-
+* Transposition of some sort
+* Repeat sections
 
 Implemented:
 ------------
@@ -19,7 +19,7 @@ Implemented:
 * Basic commandline functionality
 * Reads and parses a JSON input file containing a book of songs with chords
 * Plaintext output mode
-* HTML output mode
+* HTML output mode, which prints more or less nicely
 
 
 Initial plan:
@@ -50,7 +50,6 @@ HTML
 Phase 2
 -------
 
-* Transposition
 * Lyrics
 * Tablature scraps
 * Topline melody (in certain output types, eg MuseScore)
