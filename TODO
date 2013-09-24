@@ -10,7 +10,6 @@ TODO next:
 * Option to create multipage HTML files (why?)
 * Externalise HTML template
 * Externalise CSS for HTML
-* Transposition of some sort
 * Repeat sections
 
 Implemented:
@@ -20,7 +19,7 @@ Implemented:
 * Reads and parses a JSON input file containing a book of songs with chords
 * Plaintext output mode
 * HTML output mode, which prints more or less nicely
-
+* Transposition feature
 
 Initial plan:
 -------------

@@ -59,12 +59,10 @@ Issues
 * setup.py does not work properly. Have not yet figured out why.
 * Entering JSON by hand is no fun.
 * Text output is completely useless.
-* HTML output does not make bars equal widths.
 * HTML output is hideous.
 * Sorting not yet properly handled. Should be optional.
 * No option to produce multi-page HTML output.
-* Tune has no notion of key.
-* Time sig and composer not yet used.
+* Composer not yet used - should be 'credit' anyway
 * Other bugs I have not yet spotted (many, no doubt).
 
 
