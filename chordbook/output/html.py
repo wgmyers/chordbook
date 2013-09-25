@@ -20,7 +20,7 @@ class html(CbkOutputter):
 body {
     font-family: Helvetica, Arial, sans-serif;
     background-color: #faf0e6;
-    margin: 0% 20%;
+    margin: 0% 5%;
 }
 
 h1, h2, h5, p {
@@ -81,7 +81,7 @@ td.directive {
 
 .chords {
     text-align: center;
-    font-size: 32pt;
+    font-size: 20pt;
 }
 
 .spacer {
