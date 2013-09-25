@@ -22,7 +22,7 @@ class text(CbkOutputter):
                 s += section.title() + "\n\n"
             else:
                 s += section.title() + ":\n"
-                chunks = self.chunk_section(t.__getattribute__(section))
+                chunks = t.chunk_section(t.__getattribute__(section))
                 for c in chunks:
                     s += c + "\n"
                 s += "\n"
