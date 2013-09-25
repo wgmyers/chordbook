@@ -16,7 +16,10 @@ class Tune(object):
 
         majors = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"]
         minors = ["F#", "G", "Ab", "A", "Bb", "B", "C", "C#", "D", "Eb", "E", "F"]
-        
+
+        missing = { 'A#':'Bb', 'B#':'C', 'C#':'Db', 'D#':'Eb', 'E#':'F', 'G#':'Ab',
+                    'Cb':'B', 'Db':'C#', 'Fb':'E', 'Gb':'F#' }
+
         # Split c into chord and suffix if present
         # Look mum, no regexes :)
         minor = False
@@ -24,8 +27,7 @@ class Tune(object):
         index = 1
         if c[index] == "#" or c[index] == "b":
             index += 1
-        if c[index] == "m" and c[index:index+3] != "maj7":
-            #index += 1
+        if ((c[index] == "m") and (c[index:index+4] != "maj7")) or (c[index:index+3] == "dim"):
             minor = True
         chord = c[:index]
         suffix = c[index:].strip() # lose spurious w/s we just added
@@ -35,8 +37,14 @@ class Tune(object):
         if minor == True:
             ki = minors
 
+        if self.key not in ki:
+            self.key = missing[self.key]
         ikey = ki.index(self.key)
+        if self.transpose not in ki:
+            self.transpose = missing[self.transpose]
         tkey = ki.index(self.transpose)
+        if chord not in ki:
+            chord = missing[chord]
         ckey = ki.index(chord)
 
         chord = ki[(ckey + tkey - ikey) % 12]
@@ -101,7 +109,32 @@ def load_json(infile):
 
     return b
 
+if __name__ == '__main__':
 
-        
+    print "Transposition test."
+
+    aeolian = ["A", "B", "C", "D", "E", "F", "G"]
+    keys = []
+    for k in aeolian:
+        keys.append(k)
+        keys.append(k + "#")
+        keys.append(k + "b")
+
+    suffixes = ["", "m", "7", "maj7", "sus4", "aug", "dim", "m7b5", "9", "13"]
+
+    t = Tune()
+
+    for inkey in keys:
+        for outkey in keys:
+            for chord in keys:
+                for suffix in suffixes:
+                    c = chord + suffix
+                    t.key = inkey
+                    t.transpose = outkey
+                    out = t.do_transpose(c)
+                    print "Original key: %s. Transposed to: %s. Chord %s becomes %s" % (inkey, outkey, c, out)
+
+    print "Done testing."        
+
 
     
