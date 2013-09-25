@@ -20,6 +20,12 @@ class Tune(object):
         missing = { 'A#':'Bb', 'B#':'C', 'C#':'Db', 'D#':'Eb', 'E#':'F', 'G#':'Ab',
                     'Cb':'B', 'Db':'C#', 'Fb':'E', 'Gb':'F#' }
 
+        # Preserve prefixed '('
+        prefix = ""
+        if c[0] == "(":
+            prefix = "("
+            c = c[1:]
+
         # Split c into chord and suffix if present
         # Look mum, no regexes :)
         minor = False
@@ -49,20 +55,24 @@ class Tune(object):
 
         chord = ki[(ckey + tkey - ikey) % 12]
 
-        newchord = chord + suffix
+        newchord = prefix + chord + suffix
 
         # Return new key
         return newchord
 
     def process_section(self, s):
-        """Take a section and return an array of chords"""
-        inchords = s.split("|")
-        outchords = []
+        """Take a section and return an array of bars of chords"""
+        inbars = s.split("|")
+        outbars = []
 
-        for c in inchords:
-            outchords.append(self.do_transpose(c.strip()))
+        for b in inbars:
+            chords = b.strip().split(" ")
+            outchords = []
+            for c in chords:
+                outchords.append(self.do_transpose(c.strip()))
+            outbars.append(" ".join(outchords))
 
-        return outchords
+        return outbars
 
     def chunk_section(self, s):
         """Take a section and return an array of 4 bar chunks"""
