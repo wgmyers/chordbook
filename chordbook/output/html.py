@@ -35,7 +35,7 @@ h3 {
 }
 
 h4 {
-    padding: 0% 10%;
+    padding: 0% 2%;
     margin: 0%;
     background-color: #b0e0e6;
 }
@@ -51,6 +51,7 @@ p {
 
 table {
     width: 100%;
+    padding: 0% 2%;
 }
 
 td {
