@@ -11,6 +11,13 @@ class Tune(object):
     def __repr__(self):
         return "%s(%r)" % (self.__class__, self.__dict__)
 
+    def get_keyname(self, c):
+        """Take a key name which may have 'm' at end; strip 'm' if present"""
+        if c[len(c) - 1] == "m":
+            return c[:len(c) - 1]
+        else:
+            return c
+
     def do_transpose(self, c):
         """Take a chord and transpose it according to transpose element if present"""
 
@@ -43,12 +50,14 @@ class Tune(object):
         if minor == True:
             ki = minors
 
-        if self.key not in ki:
-            self.key = missing[self.key]
-        ikey = ki.index(self.key)
-        if self.transpose not in ki:
-            self.transpose = missing[self.transpose]
-        tkey = ki.index(self.transpose)
+        key = self.get_keyname(self.key)
+        if key not in ki:
+            key = missing[key]
+        ikey = ki.index(key)
+        transpose = self.get_keyname(self.transpose)
+        if transpose not in ki:
+            transpose = missing[transpose]
+        tkey = ki.index(transpose)
         if chord not in ki:
             chord = missing[chord]
         ckey = ki.index(chord)
