@@ -187,8 +187,9 @@ td.directive {
         s = "<h2>Contents</h2>\n<ol>"
 
         for title in c:
-            anchor = self.strip_spaces(title)
-            s += "<li><a href=\"#" + anchor + "\">" + title + "</a></li>\n"
+            name, credit = title.split("-", 1)
+            anchor = self.strip_spaces(name)
+            s += "<li><a href=\"#" + anchor + "\">" + name.strip() + "</a> - " + credit.strip() + "</li>\n"
 
         s += "</ol>\n"
 

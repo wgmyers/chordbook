@@ -125,7 +125,12 @@ class Book(object):
 
         c = []
         for t in self.tunes:
-            c.append(t.name)
+            title = t.name
+            if hasattr(t, 'composer'):
+                title += " - " + t.composer
+            if hasattr(t, 'credit'):
+                title += " - " + t.credit 
+            c.append(title)
         c.sort()
 
         return c
