@@ -50,7 +50,7 @@ table {
 }
 
 td {
-    width: 25%;
+    width: 15%; 
 }
 
 td.bar {

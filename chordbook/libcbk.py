@@ -98,12 +98,17 @@ class Tune(object):
         s = s.replace("|:", "LR")
         s = s.replace(":|", "RR")
 
-        chords = s.split("|")
+        bars = s.split("|")
 
         chunks = []
         sep = "|"
-        for i in range(0, len(chords), 4):
-            chunks.append(sep.join(chords[i:i+4]).strip())
+        for i in range(0, len(bars), 4):
+            # Avoid orphans
+            if i+8 > len(bars):
+                chunks.append(sep.join(bars[i:]).strip())
+                break
+            else:
+                chunks.append(sep.join(bars[i:i+4]).strip())
 
         return chunks
 
