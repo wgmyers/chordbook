@@ -80,7 +80,7 @@ td.directive {
 }
 
 .chords {
-    text-align: center;
+    text-align: left;
     font-size: 20pt;
 }
 
@@ -119,6 +119,14 @@ td.directive {
         c = c.replace("b", "&#x266d;")
         # replace 'maj7' with &Delta;
         c = c.replace("maj7", "&Delta;")
+        # replace 'LR' with left repeat sign
+        # Eat the trailing space so it doesn't get its own td
+        # Add trailing &nbsp; so it displays correctly
+        c = c.replace("LR ", "&#x1d106;&nbsp;")
+        # replace 'RR' with right repeat sign
+        c = c.replace("RR", "&#x1d107;")
+        # replace 'pause' with pause sign
+        c = c.replace("pause", "&#x1d110;")
 
         return c
 
@@ -151,11 +159,18 @@ td.directive {
                     for c in chords:
                         # Replace plaintext with musical HTML equivalents
                         c = self.replace_entities(c)
+                        # Each bar is a td, last bar has no | on right
                         if (i < len(chords) - 1):
                             s += "<td class=\"bar\">"
                         else:
                             s+= "<td>"
-                        s += "<p class=\"chords\">" + c + "</p></td>"
+                        # Spread chords within bar out using another table
+                        s += "<table><tr>"
+                        for p in c.split(" "):
+                            s += "<td><p class=\"chords\">" + p + "</p></td>"
+                        s += "</tr></table>"
+                        # End of bar td
+                        s += "</td>"
                         i += 1
                     s += "</tr>"
                 seen[section.title()] = True

@@ -77,18 +77,27 @@ class Tune(object):
         """Take a section and return an array of bars of chords"""
         inbars = s.split("|")
         outbars = []
+        nonchords = ["LR", "RR"]
 
         for b in inbars:
             chords = b.strip().split(" ")
             outchords = []
             for c in chords:
-                outchords.append(self.do_transpose(c.strip()))
+                c = c.strip()
+                if c in nonchords:
+                    outchords.append(c)
+                else:
+                    outchords.append(self.do_transpose(c.strip()))
             outbars.append(" ".join(outchords))
 
         return outbars
 
     def chunk_section(self, s):
         """Take a section and return an array of 4 bar chunks"""
+        # Transform "|:" and ":|" into LR and RR
+        s = s.replace("|:", "LR")
+        s = s.replace(":|", "RR")
+
         chords = s.split("|")
 
         chunks = []
