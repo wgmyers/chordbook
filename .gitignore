@@ -1,4 +1,5 @@
 MANIFEST
 dist
-test.html
-README
+*.html
+books
+

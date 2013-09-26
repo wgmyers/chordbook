@@ -20,10 +20,11 @@ Book contains:
 Tune contains:
 
 * name - the name of the tune
-* composer - the name of the composer. Not yet used.
+* composer - the name of the composer (optional)
+* credit - name of the original artist (for covers, optional))
 * time - the time signature of the tune. 
 * key - the key of the tune
-* transpose - the key we display the tune in 
+* transpose - the key we display the tune in (optional)
 * structure - an array of chord elements indicating the structure of the tune
 * chord elements - arbitrarily named, containing chord elements
 
@@ -32,10 +33,10 @@ Chord elements are structured as follows:
 * A series of chord names separated by the string " | "
 * Chord names are currently free-form
 * Eg "Ebmaj7 | Bb7 | Gmb5 | Fm"
+* Repeat sections may be specified using '|:' and ':|'
+* HTML output prettifies '#', 'b', repeats, 'pause', 'maj7' and 'm7b5'
 
 For now you need to enter your JSON directly.
-
-Transposition exists but may be buggy.
 
 See examples/test.cbk for an example.
 
@@ -58,13 +59,11 @@ See TODO.
 Issues
 ------
 
-* setup.py does not work properly. Have not yet figured out why.
 * Entering JSON by hand is no fun.
-* Text output is completely useless.
+* Text output is a) useless, b) probably broken
 * HTML output is hideous.
 * Sorting not yet properly handled. Should be optional.
 * No option to produce multi-page HTML output.
-* Composer not yet used - should be 'credit' anyway
 * Other bugs I have not yet spotted (many, no doubt).
 
 
