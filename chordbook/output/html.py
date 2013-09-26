@@ -108,6 +108,20 @@ td.directive {
         s = s.replace(" ", "")
         return s
 
+    def replace_entities(self, c):
+        """Take a bar of chords, replace suitable HTML entities"""
+
+        # replace '#' with &#x266f
+        c = c.replace("#", "&#x266f;")
+        # replace m7b5 with oslash
+        c = c.replace("m7b5", "&oslash;7")
+        # replace 'b' with &#x266d
+        c = c.replace("b", "&#x266d;")
+        # replace 'maj7' with &Delta;
+        c = c.replace("maj7", "&Delta;")
+
+        return c
+
     def make_tune(self, t):
         """Format an individual tune"""
         s = "<div class=\"tune\">\n"
@@ -135,6 +149,8 @@ td.directive {
                     chords = t.process_section(chunk)
                     i = 0
                     for c in chords:
+                        # Replace plaintext with musical HTML equivalents
+                        c = self.replace_entities(c)
                         if (i < len(chords) - 1):
                             s += "<td class=\"bar\">"
                         else:
