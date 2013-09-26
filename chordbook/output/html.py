@@ -128,7 +128,7 @@ td.directive {
         anchor = self.strip_spaces(t.name)
         s += "<table><tr>"
         key = t.key
-        if t.transpose:
+        if hasattr(t, 'transpose'):
             key = t.transpose + " (orig " + t.key + ")"
         s += "<td><a name=\"" + anchor + "\"></a><h3>" + t.name + \
                 "</h3></td><td class=\"directive\"><i>" + t.time + \

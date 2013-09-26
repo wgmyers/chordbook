@@ -21,6 +21,10 @@ class Tune(object):
     def do_transpose(self, c):
         """Take a chord and transpose it according to transpose element if present"""
 
+        # Make sure we have a transpose attribute before we go any further
+        if hasattr(self, 'transpose') == False:
+            return c
+
         majors = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"]
         minors = ["F#", "G", "Ab", "A", "Bb", "B", "C", "C#", "D", "Eb", "E", "F"]
 
