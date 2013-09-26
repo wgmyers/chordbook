@@ -40,6 +40,10 @@ h4 {
     background-color: #b0e0e6;
 }
 
+h4.repeat {
+    background-color: #e6e0b0;
+}
+
 p {
     margin: 0px;
     padding: 0px;
@@ -135,9 +139,9 @@ td.directive {
         s = "<div class=\"tune\">\n"
         anchor = self.strip_spaces(t.name)
         s += "<table><tr>"
-        key = t.key
+        key = self.replace_entities(t.key)
         if hasattr(t, 'transpose'):
-            key = t.transpose + " (orig " + t.key + ")"
+            key = self.replace_entities(t.transpose) + " (orig " + key + ")"
         s += "<td><a name=\"" + anchor + "\"></a><h3>" + t.name + \
                 "</h3></td><td class=\"directive\"><i>" + t.time + \
                 " " + key + "</i></td>\n"
@@ -147,7 +151,7 @@ td.directive {
         seen = {}
         for section in t.structure:
             if section.title() in seen:
-                s += "<h5>" + section.title() + "</h5>\n"
+                s += "<h4 class=\"repeat\">" + section.title() + "</h4>\n"
             else:
                 s += "<h4>" + section.title() + "</h4>\n"
                 s += "<table>\n"
