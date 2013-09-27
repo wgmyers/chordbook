@@ -25,6 +25,11 @@ class Tune(object):
         if hasattr(self, 'transpose') == False:
             return c
 
+        # Don't try and transpose the untransposable
+        ignore = [".", "/", "NC"]
+        if c in ignore:
+            return c
+
         majors = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"]
         minors = ["F#", "G", "Ab", "A", "Bb", "B", "C", "C#", "D", "Eb", "E", "F"]
 
