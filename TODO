@@ -3,14 +3,14 @@ Chordbook
 
 An application to manage books of chords for bands.
 
-TODO next:
-----------
+TODO for 0.1:
+-------------
 
 * Create output files directly so we don't have to use '>' to create output
-* Option to create multipage HTML files (why?)
 * Externalise HTML template
 * Externalise CSS for HTML
-* Repeat sections
+* Fix broken text outputter
+* Make -h or --help output something useful
 
 Implemented:
 ------------
@@ -20,6 +20,7 @@ Implemented:
 * Plaintext output mode
 * HTML output mode, which prints more or less nicely
 * Transposition feature
+* Package installs with standard Python tools
 
 Initial plan:
 -------------
