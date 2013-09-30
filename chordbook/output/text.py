@@ -62,7 +62,7 @@ class text(CbkOutputter):
 
         self.output += self.make_contents(book)
 
-        for t in book.tunes:
-            self.output += self.make_tune(t)
+        for tune in book.tunes:
+            self.output += self.make_tune(tune)
 
         self.output_book(book.filename)
