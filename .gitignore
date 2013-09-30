@@ -2,4 +2,5 @@ MANIFEST
 dist
 *.html
 books
-
+html
+text
