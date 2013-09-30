@@ -3,11 +3,11 @@
 from chordbook.output._base import CbkOutputter
 
 
-class text(CbkOutputter):
+class CbkTextOutputter(CbkOutputter):
     """A plaintext outputter for ChordBook"""
 
-    def __init__(self):
-        CbkOutputter.__init__(self)
+    def __init__(self, outputdir):
+        CbkOutputter.__init__(self, outputdir)
         self.outputfilesuffix = "txt"
 
     def make_underline(self, string, char):

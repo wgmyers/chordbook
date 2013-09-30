@@ -1,3 +1,6 @@
+* Stopped pylint complaining so much about coding style
+* Fixed subtle bugs introduced by above
+
 v0.0.11, 2013-09-30 -- Output now written to files
 
 * -s option writes to stdout instead

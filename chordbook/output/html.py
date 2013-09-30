@@ -1,10 +1,10 @@
-# html.py
+"""An HTML outputter for Chordbook"""
 
-# An html outputter for Chordbook
+from chordbook.output._base import CbkOutputter
 
-from _base import CbkOutputter
+class CbkHtmlOutputter(CbkOutputter):
 
-class html(CbkOutputter):
+    """An HTML outputter for Chordbook"""
 
     # FIXME - templating should be external
     # For now let's just put it here
@@ -108,135 +108,124 @@ td.directive {
 </html>
 """
 
-    def __init__(self):
-        """Call base __init__() then set outputfilesuffix""" 
-
-        CbkOutputter.__init__(self)
+    def __init__(self, outputdir):
+        CbkOutputter.__init__(self, outputdir)
         self.outputfilesuffix = "html"
 
-    def strip_spaces(self, s):
-        """Take a string and strip spaces from it"""
-        s = s.replace(" ", "")
-        return s
-
-    def replace_entities(self, c):
+    def replace_entities(self, chord):
         """Take a bar of chords, replace suitable HTML entities"""
 
         # replace '#' with &#x266f
-        c = c.replace("#", "&#x266f;")
+        chord = chord.replace("#", "&#x266f;")
         # replace m7b5 with oslash
-        c = c.replace("m7b5", "&oslash;7")
+        chord = chord.replace("m7b5", "&oslash;7")
         # replace 'b' with &#x266d
-        c = c.replace("b", "&#x266d;")
+        chord = chord.replace("b", "&#x266d;")
         # replace 'maj7' with &Delta;
-        c = c.replace("maj7", "&Delta;")
+        chord = chord.replace("maj7", "&Delta;")
         # replace 'LR' with left repeat sign
         # Eat the trailing space so it doesn't get its own td
         # Add trailing &nbsp; so it displays correctly
-        c = c.replace("LR ", "&#x1d106;&nbsp;")
+        chord = chord.replace("LR ", "&#x1d106;&nbsp;")
         # replace 'RR' with right repeat sign
-        c = c.replace("RR", "&#x1d107;")
+        chord = chord.replace("RR", "&#x1d107;")
         # replace 'pause' with pause sign
-        c = c.replace("pause", "&#x1d110;")
+        chord = chord.replace("pause", "&#x1d110;")
 
-        return c
+        return chord
 
-    def make_tune(self, t):
+    def make_tune(self, tune):
         """Format an individual tune"""
-        s = "<div class=\"tune\">\n"
-        anchor = self.strip_spaces(t.name)
-        s += "<table><tr>"
-        key = self.replace_entities(t.key)
-        if hasattr(t, 'transpose'):
-            key = self.replace_entities(t.transpose) + " (orig " + key + ")"
-        s += "<td><a name=\"" + anchor + "\"></a><h3>" + t.name + \
-                "</h3></td><td class=\"directive\"><i>" + t.time + \
+        html = "<div class=\"tune\">\n"
+        anchor = tune.name.replace(" ", "")
+        html += "<table><tr>"
+        key = self.replace_entities(tune.key)
+        if tune.transpose != "":
+            key = self.replace_entities(tune.transpose) + " (orig " + key + ")"
+        html += "<td><a name=\"" + anchor + "\"></a><h3>" + tune.name + \
+                "</h3></td><td class=\"directive\"><i>" + tune.time + \
                 " " + key + "</i></td>\n"
-        s += "</tr></table>"
+        html += "</tr></table>"
         
 
         seen = {}
-        for section in t.structure:
+        for section in tune.structure:
             if section.title() in seen:
-                s += "<h4 class=\"repeat\">" + section.title() + "</h4>\n"
+                html += "<h4 class=\"repeat\">" + section.title() + "</h4>\n"
             else:
-                s += "<h4>" + section.title() + "</h4>\n"
-                s += "<table>\n"
-                chunks = t.chunk_section(t.__getattribute__(section))
+                html += "<h4>" + section.title() + "</h4>\n"
+                html += "<table>\n"
+                chunks = tune.chunk_section(tune.__getattribute__(section))
                 for chunk in chunks:
-                    s += "<tr>"
-                    chords = t.process_section(chunk)
+                    html += "<tr>"
+                    chords = tune.process_section(chunk)
                     i = 0
-                    for c in chords:
+                    for crds in chords:
                         # Replace plaintext with musical HTML equivalents
-                        c = self.replace_entities(c)
+                        crds = self.replace_entities(crds)
                         # Each bar is a td, last bar has no | on right
                         if (i < len(chords) - 1):
-                            s += "<td class=\"bar\">"
+                            html += "<td class=\"bar\">"
                         else:
-                            s+= "<td>"
+                            html += "<td>"
                         # Spread chords within bar out using another table
-                        s += "<table><tr>"
-                        for p in c.split(" "):
-                            s += "<td><p class=\"chords\">" + p + "</p></td>"
-                        s += "</tr></table>"
+                        html += "<table><tr>"
+                        for crd in crds.split(" "):
+                            html += "<td><p class=\"chords\">" + crd + "</p></td>"
+                        html += "</tr></table>"
                         # End of bar td
-                        s += "</td>"
+                        html += "</td>"
                         i += 1
-                    s += "</tr>"
+                    html += "</tr>"
                 seen[section.title()] = True
-                s += "</table>\n"
+                html += "</table>\n"
 
-        s +="</div>\n<p class=\"spacer\">&nbsp;</p>\n"
+        html += "</div>\n<p class=\"spacer\">&nbsp;</p>\n"
 
-        return s
+        return html
 
-    def make_contents(self, b):
+    def make_contents(self, book):
         """Make the contents part of the HTML output"""
-        c = b.get_contents()
+        contents = book.get_contents()
 
-        s = "<h2>Contents</h2>\n<ol>"
+        html = "<h2>Contents</h2>\n<ol>"
 
-        for title in c:
+        for title in contents:
             name, credit = title.split("-", 1)
-            anchor = self.strip_spaces(name)
-            s += "<li><a href=\"#" + anchor + "\">" + name.strip() + "</a> - " + credit.strip() + "</li>\n"
+            anchor = name.replace(" ", "")
+            html += "<li><a href=\"#" + anchor + "\">" + name.strip() + \
+                    "</a> - " + credit.strip() + "</li>\n"
 
-        s += "</ol>\n"
+        html += "</ol>\n"
 
-        s += "</div>\n<p class=\"spacer\">&nbsp;</p>\n"
+        html += "</div>\n<p class=\"spacer\">&nbsp;</p>\n"
 
-        return s
+        return html
 
-    def make_header(self, b):
+    def make_header(self, book):
         """Make the header part of the HTML output"""
-        s = "<div class=\"titlepage\">\n"
-        s += "<h1>" + b.band + "</h1>\n"
-        s += "<p><i>Version " + b.version + "</i></p>\n"
+        html = "<div class=\"titlepage\">\n"
+        html += "<h1>" + book.band + "</h1>\n"
+        html += "<p><i>Version " + book.version + "</i></p>\n"
 
-        return s
+        return html
 
-    def make_book(self, b):
+    def make_book(self, book):
         """Output HTML version of book data"""
 
-        o = self.html_head
+        self.output = self.html_head
 
-        o = o.replace("{{TITLE}}", b.band)
+        self.output = self.output.replace("{{TITLE}}", book.band)
 
-        s = self.make_header(b)
-        o += s
+        self.output += self.make_header(book)
 
-        s = self.make_contents(b)
-        o += s
+        self.output += self.make_contents(book)
 
-        for t in b.tunes:
-            o += self.make_tune(t)
+        for tune in book.tunes:
+            self.output += self.make_tune(tune)
 
-        o += self.html_foot
-
-        self.output = o
+        self.output += self.html_foot
 
         # Do actual output
-        self.output_book(b.filename)
-
+        self.output_book(book.filename)
 

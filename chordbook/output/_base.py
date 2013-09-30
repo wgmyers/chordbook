@@ -7,9 +7,9 @@ class CbkOutputter(object):
 
     """Base class for ChordBook outputters"""
 
-    def __init__(self):
+    def __init__(self, outputdir):
         """Subclasses should call this then set their own file suffix"""
-        self.outputdir = self.__class__.__name__
+        self.outputdir = outputdir
         self.output = ""
         self.stdout = False
         self.outputfilesuffix = "repr.txt"
