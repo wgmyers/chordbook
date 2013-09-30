@@ -108,6 +108,12 @@ td.directive {
 </html>
 """
 
+    def __init__(self):
+        """Call base __init__() then set outputfilesuffix""" 
+
+        CbkOutputter.__init__(self)
+        self.outputfilesuffix = "html"
+
     def strip_spaces(self, s):
         """Take a string and strip spaces from it"""
         s = s.replace(" ", "")
@@ -228,6 +234,9 @@ td.directive {
 
         o += self.html_foot
 
-        print o
+        self.output = o
+
+        # Do actual output
+        self.output_book(b.filename)
 
 

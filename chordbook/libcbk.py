@@ -147,6 +147,7 @@ def load_json(infile):
 
     b.band = json_data['band']
     b.version = json_data['version']
+    b.filename = infile.name
 
     for tune_data in json_data['tunes']:
         t = Tune()

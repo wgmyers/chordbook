@@ -6,6 +6,12 @@ from _base import CbkOutputter
 
 class text(CbkOutputter):
 
+    def __init__(self):
+        """Call base __init__ then set outputfilesuffix"""
+
+        CbkOutputter.__init__(self)
+        self.outputfilesuffix = "txt"
+
     def make_underline(self, s, char):
         """Take a string and underline char, return underlined version"""
         s = s + "\n" +(char * len(s)) + "\n\n"
@@ -63,4 +69,5 @@ class text(CbkOutputter):
         for t in b.tunes:
             o += self.make_tune(t)
 
-        print o
+        self.output = o
+        self.output_book(b.filename)
