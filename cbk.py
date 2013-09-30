@@ -46,11 +46,11 @@ if opt.stdout == True:
 if not os.path.isfile(opt.infile):
     raise RuntimeError("Can't find input file '%s'." % opt.infile)
 
+book = libcbk.Book()
 f = open(opt.infile)
-b = libcbk.load_json(f)
+book.load_json(f)
 f.close()
 
 # produce output
-o.make_book(b)
+o.make_book(book)
 
-# done
