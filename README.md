@@ -46,10 +46,17 @@ Output
 ------
 
 Output is designed to be pluggable, so users can easily create their
-own output formats at will. For now there are only two, 'text', and
+own output plugins easily. For now there are only two, 'text', and
 'html', which produce text and html output respectively.
 
-Output currently goes directly to stdout rather than files.
+See the chordbook/output directory for code. Outputters inherit from
+the _base.py base class.
+
+Default output format is html.
+
+By default an input file foo.cbk will produce output written to html/foo.html
+
+If the -s switch is given, output is sent to stdout instead.
 
 Roadmap
 -------
@@ -60,7 +67,7 @@ Issues
 ------
 
 * Entering JSON by hand is no fun.
-* Text output is a) useless, b) probably broken
+* Text output is useless, 
 * HTML output is hideous.
 * Sorting not yet properly handled. Should be optional.
 * No option to produce multi-page HTML output.

@@ -9,6 +9,7 @@ import chordbook.libcbk
 class CbkOutputter(object):
 
     def __init__(self):
+        """Subclasses should call this then set their own file suffix"""
         self.outputdir = self.__class__.__name__
         self.output = ""
         self.stdout = False

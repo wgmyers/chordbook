@@ -6,11 +6,15 @@ An application to manage books of chords for bands.
 TODO for 0.1:
 -------------
 
-* Create output files directly so we don't have to use '>' to create output
 * Externalise HTML template
 * Externalise CSS for HTML
-* Fix broken text outputter
 * Make -h or --help output something useful
+
+TODO then:
+----------
+
+* Annotations
+* Some kind of JSON inputter thing
 
 Implemented:
 ------------
@@ -21,6 +25,10 @@ Implemented:
 * HTML output mode, which prints more or less nicely
 * Transposition feature
 * Package installs with standard Python tools
+* Writes output files to directory with name of outputter
+* Output filename derived from input filename
+* -s switch outputs to stdout instead
+
 
 Initial plan:
 -------------
