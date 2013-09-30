@@ -3,10 +3,27 @@ ChordBook
 
 A tool to manage books of chords for bands.
 
+Options
+-------
+
+*  -h, --help            show this help message and exit
+*  -v, --version         show version and exit
+*  -c, --currentdir      write to current directory instead of a subdirectory
+                         named after the output format
+*  -f FORMAT, --format=FORMAT
+                         output format: 'text' or 'html' (default is html)
+*  -i INFILE, --input=INFILE
+                         location of JSON-formatted .cbk file with song data
+*  -o OUTFILE, --output=OUTFILE
+                         specify name of output file directly;
+                         default is to change suffix of input file
+*  -s, --stdout          send output to stdout instead of writing to file
+
+
 Input
 -----
 
-Data is stored in JSON format.
+Data is stored in JSON format, in files suffixed .cbk by convention.
 
 There are two 'objects' - these become 'Book' and 'Tune' objects internally
 as follows.
@@ -57,6 +74,11 @@ Default output format is html.
 By default an input file foo.cbk will produce output written to html/foo.html
 
 If the -s switch is given, output is sent to stdout instead.
+
+If the -c switch is given, output is sent to the current directory instead of
+a subdirectory named after the output format.
+
+Using the -o OUTFILE switch, the name of the output file can be specified directly.
 
 Roadmap
 -------
