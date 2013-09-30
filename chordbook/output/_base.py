@@ -1,12 +1,12 @@
-# _base.py
-
-# Base class for ChordBook outputters
+"""Base class for ChordBook outputters"""
 
 import os
 import chordbook.libcbk
 
 
 class CbkOutputter(object):
+
+    """Base class for ChordBook outputters"""
 
     def __init__(self):
         """Subclasses should call this then set their own file suffix"""
@@ -15,18 +15,19 @@ class CbkOutputter(object):
         self.stdout = False
         self.outputfilesuffix = "repr.txt"
 
-    def make_book(self, b):
+    def make_book(self, book):
         """Store internal representation of Book object"""
 
         # Just do a repr() on the book object
-        self.output = repr(b);
+        self.output = repr(book)
 
         # Subclasses need to call this at the end of their make_book() 
-        self.output_book(b.filename)
+        self.output_book(book.filename)
 
     def output_book(self, filename):
         """ Either print output to stdout or save it as file.
-            Filename of json data file given as argument - is used to derive output filename"""
+            Filename of json data file given as argument used
+            to derive output filename"""
 
         if self.stdout == True:
             print self.output
@@ -37,13 +38,11 @@ class CbkOutputter(object):
 
             # check outputdir exists, create it if not
             if os.path.isdir(self.outputdir) == False:
-                # FIXME - what if the following fails?
                 os.mkdir(self.outputdir)
             
             # write the file
             outfile = os.path.join(self.outputdir, outputfile)
 
-            # FIXME - what if any of the following fail?
-            f = open(outfile, "w")
-            f.write(self.output)
-            f.close()
+            ofile = open(outfile, "w")
+            ofile.write(self.output)
+            ofile.close()
