@@ -13,6 +13,8 @@ class CbkOutputter(object):
         self.output = ""
         self.stdout = False
         self.outputfilesuffix = "repr.txt"
+        self.current = False
+        self.forcename = ""
 
     def make_book(self, book):
         """Store internal representation of Book object"""
@@ -31,16 +33,21 @@ class CbkOutputter(object):
         if self.stdout == True:
             print self.output
         else:
-            # create output file name from given filename
-            root, suffix = os.path.splitext(os.path.basename(filename))
-            outputfile = ".".join([root, self.outputfilesuffix])
 
-            # check outputdir exists, create it if not
-            if os.path.isdir(self.outputdir) == False:
-                os.mkdir(self.outputdir)
-            
-            # write the file
-            outfile = os.path.join(self.outputdir, outputfile)
+            if (self.forcename == ""):
+                # create output file name from given filename
+                root, suffix = os.path.splitext(os.path.basename(filename))
+                outputfile = ".".join([root, self.outputfilesuffix])
+            else:
+                outputfile = self.forcename
+
+            if self.current == False:
+                # check outputdir exists, create it if not
+                if os.path.isdir(self.outputdir) == False:
+                    os.mkdir(self.outputdir)
+                outfile = os.path.join(self.outputdir, outputfile)
+            else:
+                outfile = self.forcename
 
             ofile = open(outfile, "w")
             ofile.write(self.output)
