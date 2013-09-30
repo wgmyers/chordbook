@@ -18,9 +18,11 @@ p.add_option("-i", "--input", action="store", type="string", dest="infile")
 p.add_option("-o", "--output", action="store", type="choice", dest="output",
                 choices=["text", "html"])
 p.add_option("-v", "--version", action="store_true", dest="version")
+p.add_option("-s", "--stdout", action="store_true", dest="stdout")
 
 p.set_defaults( output="html",
-                infile="chordbook/examples/test.cbk")
+                infile="chordbook/examples/test.cbk",
+                stdout=False)
 
 opt, args = p.parse_args()
 
@@ -35,6 +37,10 @@ output_module_name = "chordbook.output." + output_type
 output_module = __import__(output_module_name, fromlist=[output_type])
 output_class = getattr(output_module, output_type)
 o = output_class()
+
+# set stdout option
+if opt.stdout == True:
+    o.stdout = True
 
 # read input
 if not os.path.isfile(opt.infile):
