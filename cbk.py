@@ -31,7 +31,7 @@ p.add_option("-o", "--output", action="store", type="string", dest="outfile",
 p.add_option("-s", "--stdout", action="store_true", dest="stdout",
              help="send output to stdout instead of writing to file")
 
-p.set_defaults( outputtype="html",
+p.set_defaults( format="html",
                 infile="chordbook/examples/test.cbk",
                 stdout=False,
                 current=False)
