@@ -2,6 +2,7 @@
 * Fixed subtle bugs introduced by above
 * setup.py now uses setuputils
 * Stub test suite for libcbk.py in place
+* -h, --help output now less gnomic
 
 v0.0.11, 2013-09-30 -- Output now written to files
 

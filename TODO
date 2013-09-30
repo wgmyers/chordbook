@@ -8,7 +8,6 @@ TODO for 0.1:
 
 * Externalise HTML template
 * Externalise CSS for HTML
-* Make -h or --help output something useful
 
 TODO then:
 ----------
@@ -28,7 +27,7 @@ Implemented:
 * Writes output files to directory with name of outputter
 * Output filename derived from input filename
 * -s switch outputs to stdout instead
-
+* -h, --help output is now useful
 
 Initial plan:
 -------------
