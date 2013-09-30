@@ -1,7 +1,6 @@
 """Base class for ChordBook outputters"""
 
 import os
-import chordbook.libcbk
 
 
 class CbkOutputter(object):

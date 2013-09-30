@@ -1,73 +1,68 @@
-# text.py
+"""A plaintext outputter for ChordBook"""
 
-# A plaintext outputter for ChordBook
+from chordbook.output._base import CbkOutputter
 
-from _base import CbkOutputter
 
 class text(CbkOutputter):
+    """A plaintext outputter for ChordBook"""
 
     def __init__(self):
-        """Call base __init__ then set outputfilesuffix"""
-
         CbkOutputter.__init__(self)
         self.outputfilesuffix = "txt"
 
-    def make_underline(self, s, char):
+    def make_underline(self, string, char):
         """Take a string and underline char, return underlined version"""
-        s = s + "\n" +(char * len(s)) + "\n\n"
-        return s
+        string = string + "\n" +(char * len(string)) + "\n\n"
+        return string
     
-    def make_tune(self, t):
+    def make_tune(self, tune):
         """Format an individual tune"""
-        s = t.name
-        s = self.make_underline(s, "-")
+        string = tune.name
+        string = self.make_underline(string, "-")
 
         seen = {}
-        for section in t.structure:
+        for section in tune.structure:
             if section.title() in seen:
-                s += section.title() + "\n\n"
+                string += section.title() + "\n\n"
             else:
-                s += section.title() + ":\n"
-                chunks = t.chunk_section(t.__getattribute__(section))
-                for c in chunks:
-                    s += c + "\n"
-                s += "\n"
+                string += section.title() + ":\n"
+                chunks = tune.chunk_section(tune.__getattribute__(section))
+                for chk in chunks:
+                    string += chk + "\n"
+                string += "\n"
                 seen[section.title()] = True
 
-        s += "\n"
+        string += "\n"
 
-        return s
+        return string
 
-    def make_contents(self, b):
+    def make_contents(self, book):
         """Return a string for the contents of the output"""
-        c = b.get_contents()
+        contents = book.get_contents()
 
-        s = self.make_underline("Contents", "-")
-        for title in c:
-            s += title
-            s += "\n"
-        s += "\n"
-        return s
+        string = self.make_underline("Contents", "-")
+        for title in contents:
+            string += title
+            string += "\n"
+        string += "\n"
+        return string
 
-    def make_header(self, b):
+    def make_header(self, book):
         """Return a string for the header of the output"""
-        s = b.band + " (version " + b.version + ")"
-        s = s.encode('utf-8')
-        s = self.make_underline(s, "=")
-        return s
+        string = book.band + " (version " + book.version + ")"
+        string = string.encode('utf-8')
+        string = self.make_underline(string, "=")
+        return string
 
-    def make_book(self, b):
+    def make_book(self, book):
         """Output plaintext version of book data"""
-        o = ""
+        self.output = ""
         
-        s = self.make_header(b)
-        o += s
+        self.output += self.make_header(book)
 
-        s = self.make_contents(b)
-        o += s
+        self.output += self.make_contents(book)
 
-        for t in b.tunes:
-            o += self.make_tune(t)
+        for t in book.tunes:
+            self.output += self.make_tune(t)
 
-        self.output = o
-        self.output_book(b.filename)
+        self.output_book(book.filename)
