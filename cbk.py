@@ -12,15 +12,20 @@ from chordbook import libcbk
 from chordbook._version import __version__
 
 # parse commandline
-p = optparse.OptionParser()
+p = optparse.OptionParser(description="A tool to manage books of chords for bands.")
 
-p.add_option("-i", "--input", action="store", type="string", dest="infile")
-p.add_option("-o", "--output", action="store", type="choice", dest="output",
-                choices=["text", "html"])
-p.add_option("-v", "--version", action="store_true", dest="version")
-p.add_option("-s", "--stdout", action="store_true", dest="stdout")
+p.add_option("-v", "--version", action="store_true", dest="version",
+             help="show version and exit")
 
-p.set_defaults( output="html",
+p.add_option("-f", "--format", action="store", type="choice", dest="format",
+             choices=["text", "html"],
+             help="output format: 'text' or 'html' (default is html)")
+p.add_option("-i", "--input", action="store", type="string", dest="infile",
+              help="location of JSON-formatted .cbk file with song data")
+p.add_option("-s", "--stdout", action="store_true", dest="stdout",
+             help="send output to stdout instead of writing to file")
+
+p.set_defaults( outputtype="html",
                 infile="chordbook/examples/test.cbk",
                 stdout=False)
 
@@ -32,7 +37,7 @@ if opt.version:
     sys.exit()
 
 # output module importing
-output_type = opt.output
+output_type = opt.format
 output_module_name = "chordbook.output." + output_type
 output_module = __import__(output_module_name, fromlist=[output_type])
 output_classname = "Cbk" + output_type.title() + "Outputter"
