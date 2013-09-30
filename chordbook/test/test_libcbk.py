@@ -16,7 +16,7 @@ class TestTune(unittest.TestCase):
     def test__repr__(self):
         """Ensure __repr__ behaves as expected"""
 
-        expected = "<class 'chordbook.libcbk.Tune'>({})"
+        expected = "<class 'chordbook.libcbk.Tune'>({'transpose': '', 'key': ''})"
 
         tune = libcbk.Tune()
         self.assertEqual(tune.__repr__(), expected)
@@ -34,7 +34,7 @@ class TestBook(unittest.TestCase):
     def test__repr__(self):
         """Ensure __repr__ behaves as expected"""
 
-        expected = "<class 'chordbook.libcbk.Book'>({'tunes': []})"
+        expected = "<class 'chordbook.libcbk.Book'>({'tunes': [], 'band': '', 'version': '', 'filename': ''})"
 
         book = libcbk.Book()
         self.assertEqual(book.__repr__(), expected)

@@ -1,6 +1,6 @@
 # setup.py
 
-from distutils.core import setup
+from setuptools import setup
 
 import re
 VERSIONFILE="./chordbook/_version.py"
@@ -24,4 +24,5 @@ setup(  name="ChordBook",
         scripts=['cbk.py'],
         license='COPYING',
         url="https://github.com/wgmyers/chordbook",
+        test_suite='chordbook.test'
         )
