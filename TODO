@@ -16,15 +16,27 @@ TODO then:
 * Annotations
 * Lyrics
 * Tags (and views on sets of tags)
-* Some kind of JSON inputter thing
+* Some kind of JSON editor / inputter thing
+* Subsettable output (albums, setlists etc)
+
+TODO eventually:
+----------------
+
+* Full-on GUI that works on all devices
+* LaTeX / PDF / PS output
+* Print from within app
+* Embeddable audio
+* Views for different parts
+* Tab
+* Rhythm notation
 
 Implemented:
 ------------
 
 * Basic commandline functionality
 * Reads and parses a JSON input file containing a book of songs with chords
-* Plaintext output mode
 * HTML output mode, which prints more or less nicely
+* Plaintext output mode, which doesn't really
 * Transposition feature
 * Package installs with standard Python tools
 * Writes output files to directory with name of outputter
