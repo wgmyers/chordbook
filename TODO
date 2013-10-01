@@ -8,11 +8,14 @@ TODO for 0.1:
 
 * Externalise HTML template
 * Externalise CSS for HTML
+* Full test suite coverage
 
 TODO then:
 ----------
 
 * Annotations
+* Lyrics
+* Tags (and views on sets of tags)
 * Some kind of JSON inputter thing
 
 Implemented:
@@ -25,9 +28,12 @@ Implemented:
 * Transposition feature
 * Package installs with standard Python tools
 * Writes output files to directory with name of outputter
+* -c switch forces output to current directory
 * Output filename derived from input filename
+* -o OUTFILE allows direct specification of output filename
 * -s switch outputs to stdout instead
-* -h, --help output is now useful
+* -h output is now useful
+* Beginnings of test suite in place
 
 Initial plan:
 -------------
