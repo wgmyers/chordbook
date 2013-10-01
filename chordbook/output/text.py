@@ -27,9 +27,17 @@ class CbkTextOutputter(CbkOutputter):
             else:
                 string += section.title() + ":\n"
                 chunks = tune.chunk_section(tune.__getattribute__(section))
-                for chk in chunks:
-                    string += chk + "\n"
-                string += "\n"
+                for chunk in chunks:
+                    chords = tune.process_section(chunk)
+                    i = 0
+                    for crds in chords:
+                        crds = crds.replace("LR", "|:")
+                        crds = crds.replace("RR", ":|")
+                        string += crds
+                        if (i < len(chords) - 1):
+                            string += " | "
+                        i += 1
+                    string += "\n"
                 seen[section.title()] = True
 
         string += "\n"
