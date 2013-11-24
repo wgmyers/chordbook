@@ -1,5 +1,6 @@
 v0.0.13 2013-11-24
 
+* Fixed bug where time signatures were being transposed
 * Fixed bug where slash bass chords weren't being transposed
 
 v0.0.12, 2013-10-01
