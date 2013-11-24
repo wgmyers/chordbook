@@ -43,6 +43,10 @@ class Tune(object):
         # Don't try and transpose the untransposable
         if chord in IGNORE:
             return chord
+        # Handle arbitrary time signatures reasonably (don't try transposing)
+        if chord[0].isdigit():
+            return chord
+
 
         # Preserve prefixed '('
         prefix = ""
