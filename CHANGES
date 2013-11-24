@@ -1,4 +1,8 @@
-v 0.0.12, 2013-10-01
+v0.0.13 2013-11-24
+
+* Fixed bug where slash bass chords weren't being transposed
+
+v0.0.12, 2013-10-01
 
 * Stopped pylint complaining so much about coding style
 * Fixed subtle bugs introduced by above
