@@ -87,8 +87,15 @@ class Tune(object):
         schord = kind[(ckey + tkey - ikey) % 12]
 
         # If we have a slash bass note we need to transpose that too
-        if (len(suffix) > 1 and (suffix[-2] == "/")):
+        # FIXME - This code is horrorshow
+        if ((len(suffix) > 1) and (suffix[-2] == "/")):
             suffix = suffix[:-1] + self.do_transpose(suffix[-1])
+        elif ((len(suffix) > 2) and (suffix[-3] == "/") and (suffix[-1] == ")")):
+            suffix = suffix[:-2] + self.do_transpose(suffix[-2]) + ")"
+        elif ((len(suffix) > 2) and (suffix[-3] == "/")):
+            suffix = suffix[:-2] + self.do_transpose(suffix[-2]+suffix[-1])
+        elif ((len(suffix) > 3) and (suffix[-4] == "/") and (suffix[-1] == ")")):
+            suffix = suffix[:-3] + self.do_transpose(suffix[-3]+suffix[-2]) + ")"
 
         newchord = prefix + schord + suffix
 
