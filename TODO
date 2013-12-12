@@ -6,7 +6,6 @@ An application to manage books of chords for bands.
 TODO for 0.1:
 -------------
 
-* Fix Baggy Trousers bug - shouldn't have line of seven bars :(
 * Externalise HTML template
 * Externalise CSS for HTML
 * Full test suite coverage
@@ -14,6 +13,7 @@ TODO for 0.1:
 TODO then:
 ----------
 
+* Forced line breaks in bars to give more control over output
 * Lyrics
 * Tags (and views on sets of tags)
 * Some kind of JSON editor / inputter thing

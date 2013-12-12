@@ -6,6 +6,7 @@ v0.0.14 2014-12-12
 * HTML output now includes composer / credit if present
 * Added support for (+) to denote coda symbol
 * Added support for inline annotations using [, ] and _ for spaces
+* Fixed seven bars on a line bug
 
 v0.0.13 2013-11-24
 

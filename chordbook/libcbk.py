@@ -137,7 +137,7 @@ class Tune(object):
         sep = "|"
         for i in range(0, len(bars), 4):
             # Avoid orphans
-            if i+8 > len(bars):
+            if i+7 > len(bars):
                 chunks.append(sep.join(bars[i:]).strip())
                 break
             else:
