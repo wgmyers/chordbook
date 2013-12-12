@@ -134,6 +134,11 @@ td.directive {
         # replace '(+)' with coda sign
         chord = chord.replace("(+)", "&#x1d10c")
 
+        # Handle inline notes
+        # replace [ and ] with <small> and </small>
+        chord = chord.replace("[", "<small>")
+        chord = chord.replace("]", "</small>")
+
         return chord
 
     def make_tune(self, tune):
@@ -173,6 +178,8 @@ td.directive {
                         # Spread chords within bar out using another table
                         html += "<table><tr>"
                         for crd in crds.split(" "):
+                            # Strip remaining _ from inline annotations
+                            crd = crd.replace("_", " ")
                             html += "<td><p class=\"chords\">" + crd + "</p></td>"
                         html += "</tr></table>"
                         # End of bar td

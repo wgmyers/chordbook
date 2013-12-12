@@ -46,7 +46,11 @@ class Tune(object):
         # Handle arbitrary time signatures reasonably (don't try transposing)
         if chord[0].isdigit():
             return chord
-
+        # Allow notes delimited by [ ] containing one space
+        if chord[0] == "[":
+            return chord
+        if chord[-1] == "]":
+            return chord
 
         # Preserve prefixed '('
         prefix = ""
