@@ -143,8 +143,8 @@ td.directive {
         if tune.transpose != "":
             key = self.replace_entities(tune.transpose) + " (orig " + key + ")"
         html += "<td><a name=\"" + anchor + "\"></a><h3>" + tune.name + \
-                "</h3></td><td class=\"directive\"><i>" + tune.time + \
-                " " + key + "</i></td>\n"
+                "</h3></td><td class=\"directive\">" + tune.get_artist() + \
+                " <i>" + tune.time + " " + key + "</i></td>\n"
         html += "</tr></table>"
         
 
