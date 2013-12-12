@@ -141,6 +141,20 @@ class Tune(object):
 
         return chunks
 
+    def get_artist(self):
+        """Return string containing composer / credit attributes if present"""
+
+        artist = "Unknown"
+        has_composer = False
+        if hasattr(self, 'composer'):
+            artist = tune.composer
+            has_composer = True
+        if hasattr(self, 'credit'):
+            if has_composer == True:
+                artist += " - " + self.credit
+            else:
+                artist = self.credit
+        return artist
 
 class Book(object):
 
@@ -161,10 +175,7 @@ class Book(object):
         contents = []
         for tune in self.tunes:
             title = tune.name
-            if hasattr(tune, 'composer'):
-                title += " - " + tune.composer
-            if hasattr(tune, 'credit'):
-                title += " - " + tune.credit 
+            title += " - " + tune.get_artist()
             contents.append(title)
         contents.sort()
 
