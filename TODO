@@ -14,7 +14,6 @@ TODO for 0.1:
 TODO then:
 ----------
 
-* Annotations
 * Lyrics
 * Tags (and views on sets of tags)
 * Some kind of JSON editor / inputter thing
@@ -36,6 +35,7 @@ Implemented:
 
 * Basic commandline functionality
 * Reads and parses a JSON input file containing a book of songs with chords
+* Inline annotations handled (can be ugly though)
 * HTML output mode, which prints more or less nicely
 * Plaintext output mode, which doesn't really
 * Transposition feature

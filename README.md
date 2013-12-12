@@ -51,7 +51,9 @@ Chord elements are structured as follows:
 * Chord names are currently free-form
 * Eg "Ebmaj7 | Bb7 | Gmb5 | Fm"
 * Repeat sections may be specified using '|:' and ':|'
-* HTML output prettifies '#', 'b', repeats, 'pause', 'maj7' and 'm7b5'
+* Coda may be specified using '(+)'
+* Inline annotations delimited with '[' and ']' using '_' for ' ' 
+* HTML output prettifies coda symbol, '#', 'b', repeats, 'pause', 'maj7' and 'm7b5'
 
 For now you need to enter your JSON directly.
 
