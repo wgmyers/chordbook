@@ -4,7 +4,7 @@ import json
 
 
 # Constants for Tune.do_transpose()
-IGNORE = [".", "/", "%", "NC"]
+IGNORE = [".", "/", "%", "NC", "(+)"]
 
 MAJORS = ["A", "Bb", "B", "C", "Db", "D",
           "Eb", "E", "F", "F#", "G", "Ab"]

@@ -131,6 +131,8 @@ td.directive {
         chord = chord.replace("RR", "&#x1d107;")
         # replace 'pause' with pause sign
         chord = chord.replace("pause", "&#x1d110;")
+        # replace '(+)' with coda sign
+        chord = chord.replace("(+)", "&#x1d10c")
 
         return chord
 
