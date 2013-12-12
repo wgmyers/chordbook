@@ -1,3 +1,8 @@
+v0.0.14 2014-12-12
+
+* Add support for '%' to denote repeat bars
+* Output now sorts tunes by name regardless of input sort order
+
 v0.0.13 2013-11-24
 
 * Fixed bug where time signatures were being transposed

@@ -4,7 +4,7 @@ import json
 
 
 # Constants for Tune.do_transpose()
-IGNORE = [".", "/", "NC"]
+IGNORE = [".", "/", "%", "NC"]
 
 MAJORS = ["A", "Bb", "B", "C", "Db", "D",
           "Eb", "E", "F", "F#", "G", "Ab"]
@@ -170,6 +170,11 @@ class Book(object):
 
         return contents
 
+    def sort_tunes(self):
+        """Sort tunes by tune.name"""
+
+        self.tunes.sort(key = lambda x: x.name)
+
     def load_json(self, infile):
         """Load json data"""
 
@@ -185,7 +190,7 @@ class Book(object):
                 tune.__setattr__(k, tune_data[k])
             self.tunes.append(tune)
 
-
+        self.sort_tunes()
 
 
     
