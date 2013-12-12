@@ -4,6 +4,7 @@ v0.0.14 2014-12-12
 * Output now sorts tunes by name regardless of input sort order
 * Improved composer / credit handling
 * HTML output now includes composer / credit if present
+* Added support for (+) to denote coda symbol
 
 v0.0.13 2013-11-24
 
