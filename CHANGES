@@ -1,6 +1,7 @@
 v0.0.15 2014-12-14
 
 * Fix problem with empty string arriving in do_transpose
+* Improve inline note handling with css
 
 v0.0.14 2014-12-12
 

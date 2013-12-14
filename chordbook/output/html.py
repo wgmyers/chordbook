@@ -93,6 +93,10 @@ td.directive {
     height: 600px;
 }
 
+.note {
+    font-size: 10pt;
+}
+
 @media print {
     .spacer { display: none; }
 }
@@ -134,10 +138,6 @@ td.directive {
         # replace '(+)' with coda sign
         chord = chord.replace("(+)", "&#x1d10c")
 
-        # Handle inline notes
-        # replace [ and ] with <small> and </small>
-        chord = chord.replace("[", "<small>")
-        chord = chord.replace("]", "</small>")
 
         return chord
 
@@ -178,8 +178,11 @@ td.directive {
                         # Spread chords within bar out using another table
                         html += "<table><tr>"
                         for crd in crds.split(" "):
-                            # Strip remaining _ from inline annotations
+                            # Inline annotations
                             crd = crd.replace("_", " ")
+                            # replace [ and ] with div 
+                            crd = crd.replace("[", "<div class=\"note\">")
+                            crd = crd.replace("]", "</div>")
                             html += "<td><p class=\"chords\">" + crd + "</p></td>"
                         html += "</tr></table>"
                         # End of bar td
