@@ -1,3 +1,7 @@
+v0.0.15 2014-12-14
+
+* Fix problem with empty string arriving in do_transpose
+
 v0.0.14 2014-12-12
 
 * Add support for '%' to denote repeat bars

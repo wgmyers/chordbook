@@ -40,6 +40,10 @@ class Tune(object):
         if self.transpose == "":
             return chord
 
+        # Don't transpose the empty string
+        if chord == "":
+            return chord
+
         # Don't try and transpose the untransposable
         if chord in IGNORE:
             return chord
