@@ -1,9 +1,13 @@
-v0.0.15 2014-12-14
+v0.0.16 2014-04-23
+
+* Allow '..' and '//' in chord progressions
+
+v0.0.15 2013-12-14
 
 * Fix problem with empty string arriving in do_transpose
 * Improve inline note handling with css
 
-v0.0.14 2014-12-12
+v0.0.14 2013-12-12
 
 * Add support for '%' to denote repeat bars
 * Output now sorts tunes by name regardless of input sort order
