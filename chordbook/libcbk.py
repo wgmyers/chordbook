@@ -155,7 +155,7 @@ class Tune(object):
         artist = "Unknown"
         has_composer = False
         if hasattr(self, 'composer'):
-            artist = tune.composer
+            artist = self.composer
             has_composer = True
         if hasattr(self, 'credit'):
             if has_composer == True:
