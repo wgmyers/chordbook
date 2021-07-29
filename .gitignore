@@ -1,6 +1,7 @@
 MANIFEST
 dist
 *.html
+*.pyc
 books
 html
 text
