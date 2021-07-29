@@ -6,3 +6,4 @@ html
 text
 pylint.out
 ChordBook.egg-info
+build/
